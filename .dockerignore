@@ -1,0 +1,4 @@
+# The backend build needs only its source and dependency file.
+**
+!requirements.txt
+!backend/*.py

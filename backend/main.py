@@ -1,3 +1,4 @@
+import os
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -13,7 +14,9 @@ from .models import RepairOrder, RepairOrderCreate, RepairOrderStatusUpdate
 DEFAULT_DATABASE_PATH = Path(__file__).resolve().parent.parent / "repair_orders.sqlite3"
 
 
-def create_app(database_path: str | Path = DEFAULT_DATABASE_PATH) -> FastAPI:
+def create_app(database_path: str | Path | None = None) -> FastAPI:
+    if database_path is None:
+        database_path = os.getenv("BIKE_REPAIR_DATABASE_PATH") or DEFAULT_DATABASE_PATH
     database_path = Path(database_path)
 
     @asynccontextmanager

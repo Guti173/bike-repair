@@ -1,0 +1,10 @@
+# Allow only the files required by the current frontend.
+**
+!package.json
+!package-lock.json
+!index.html
+!tsconfig.json
+!vite.config.ts
+!src/*.ts
+!src/*.tsx
+!src/*.css
