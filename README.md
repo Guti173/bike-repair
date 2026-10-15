@@ -1,9 +1,9 @@
-# Bike Repair Management Backend
+# Bike Repair Management
 
-Local prototype using FastAPI, Pydantic and Python's built-in SQLite support.
-Requires Python 3.10 or newer. Only the backend is implemented.
+Local prototype using FastAPI, Pydantic, SQLite, React, TypeScript and Vite.
+Requires Python 3.10 or newer and Node.js 22.12 or newer.
 
-## Install
+## Install the backend
 
 Run from the repository root:
 
@@ -13,7 +13,7 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-## Run
+## Run the backend
 
 ```sh
 python -m uvicorn backend.main:create_app --factory --host 127.0.0.1 --port 8000
@@ -22,6 +22,30 @@ python -m uvicorn backend.main:create_app --factory --host 127.0.0.1 --port 8000
 Interactive API documentation is available at <http://127.0.0.1:8000/docs>.
 The backend creates `repair_orders.sqlite3` in the repository root on startup.
 Orders persist across restarts. This runtime database is ignored by Git.
+
+## Install and run the frontend
+
+In a second terminal, from the repository root:
+
+```sh
+cd frontend
+npm ci
+npm run dev
+```
+
+Open <http://localhost:5173>. Vite uses port 5173 and exits if that port is
+already occupied. The interface is in Spanish and supports creating, listing,
+and updating repair orders. An empty list, loading states, and request errors
+are displayed in the interface. Failed requests preserve entered form data
+and the last confirmed order status.
+
+The API URL is `http://127.0.0.1:8000`, defined in `frontend/src/api.ts`.
+Run the backend on that host and port. Its CORS configuration allows only
+`http://localhost:5173` and `http://127.0.0.1:5173`, with GET, POST and PATCH
+and the Content-Type request header. Credentials are not enabled.
+
+The frontend keeps only the current screen state in memory. SQLite remains
+the only persistence mechanism; the frontend does not use localStorage.
 
 ## API
 
@@ -46,12 +70,26 @@ through FastAPI/Pydantic validation.
 Use synthetic data only. Do not submit real customer details or secrets.
 The application does not log request bodies or repair descriptions.
 
-## Test
+## Verify
+
+With the Python virtual environment active, from the repository root:
 
 ```sh
-python -m pytest -q
+pytest -v
 ```
 
 Tests use pytest temporary SQLite files through `create_app(database_path)`.
 They do not access the local runtime database. Persistence is checked by
 restarting the app against the same temporary database.
+CORS tests also use a temporary database.
+
+From `frontend/`:
+
+```sh
+npm run typecheck
+npm run build
+```
+
+The build script also checks TypeScript before generating `frontend/dist/`.
+Built assets and node_modules are ignored by Git. The build command verifies
+the assets; use `npm run dev` for this local prototype's frontend/API workflow.

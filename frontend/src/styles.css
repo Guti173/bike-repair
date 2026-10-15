@@ -1,0 +1,106 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #202a32;
+  background: #fff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input, textarea, select { font: inherit; }
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+}
+
+.page-header {
+  border-bottom: 1px solid #dce1e5;
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+}
+
+h1 { margin: 0; font-size: 1.65rem; font-weight: 650; }
+h2 { margin: 0 0 16px; font-size: 1.1rem; font-weight: 650; }
+
+.workspace {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.create-section { padding-right: 28px; border-right: 1px solid #dce1e5; }
+.orders-section { min-width: 0; }
+.hint { color: #586771; font-size: 0.875rem; }
+.create-section > .hint { margin: -8px 0 20px; }
+
+fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
+label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 6px; }
+
+input, textarea, select {
+  width: 100%;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #aeb9c1;
+  border-radius: 3px;
+  padding: 8px 10px;
+  min-height: 40px;
+}
+
+input, textarea { margin-bottom: 18px; }
+textarea { resize: vertical; }
+
+button {
+  padding: 9px 16px;
+  min-height: 40px;
+  border: 1px solid #185a48;
+  border-radius: 3px;
+  background: #185a48;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) { background: #104536; }
+.create-section button { width: 100%; }
+.secondary { color: #185a48; background: #fff; }
+.secondary:hover:not(:disabled) { background: #edf5f1; }
+:disabled { cursor: not-allowed; opacity: 0.6; }
+:focus-visible { outline: 3px solid #568fda; outline-offset: 2px; }
+
+.error {
+  margin: 10px 0 0;
+  color: #a12424;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.load-error { padding: 4px 0 16px; }
+.load-error .error { margin: 0 0 12px; }
+.empty-state { margin: 0; padding: 24px 0; color: #586771; border-top: 1px solid #dce1e5; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; min-width: 650px; border-collapse: collapse; font-size: 0.875rem; }
+th, td { text-align: left; vertical-align: top; padding: 12px 10px; border-bottom: 1px solid #dce1e5; }
+thead th { background: #f4f6f7; font-weight: 600; }
+tbody th { white-space: nowrap; font-weight: 600; }
+td { overflow-wrap: anywhere; }
+td:not(.status-cell) { max-width: 240px; }
+.issue-text { white-space: pre-wrap; }
+.status-cell { width: 168px; min-width: 168px; }
+.status-cell select { font-size: 0.875rem; }
+.status-cell small { display: block; margin-top: 4px; }
+
+@media (max-width: 900px) {
+  .workspace { grid-template-columns: 1fr; gap: 28px; }
+  .create-section { padding: 0 0 24px; border-right: 0; border-bottom: 1px solid #dce1e5; }
+  .create-section form { max-width: 460px; }
+}
+
+@media (max-width: 540px) {
+  .page { padding: 20px 16px 32px; }
+  h1 { font-size: 1.4rem; }
+}

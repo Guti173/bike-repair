@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Annotated
 
 from fastapi import FastAPI, HTTPException, Path as PathParameter, status
+from fastapi.middleware.cors import CORSMiddleware
 
 from . import database
 from .models import RepairOrder, RepairOrderCreate, RepairOrderStatusUpdate
@@ -21,6 +22,12 @@ def create_app(database_path: str | Path = DEFAULT_DATABASE_PATH) -> FastAPI:
         yield
 
     app = FastAPI(title="Bike Repair Management", lifespan=lifespan)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+        allow_methods=["GET", "POST", "PATCH"],
+        allow_headers=["Content-Type"],
+    )
 
     @app.post(
         "/repair-orders",
