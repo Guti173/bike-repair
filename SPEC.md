@@ -124,8 +124,7 @@ The following are intentionally excluded from this prototype:
 The user interface will be in Spanish because the fictional end user is a
 Spanish bicycle workshop.
 
-Source code, technical documentation and commit messages will be written in
-English.
+Source code will be written in English.
 
 ## API
 
