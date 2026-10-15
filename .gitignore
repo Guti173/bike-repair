@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local database
+*.db
+*.sqlite
+*.sqlite3
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Editors / OS
+.vscode/
+.DS_Store
+
+# Logs
+*.log
