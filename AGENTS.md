@@ -15,7 +15,7 @@ Do not modify `SPEC.md` unless explicitly requested by the human developer.
 - Avoid unnecessary abstractions.
 - Keep dependencies minimal.
 - Use clear names and small focused functions.
-- Code and technical documentation must be written in English.
+- Code must be written in English.
 - The user-facing interface must be written in Spanish.
 
 ## Backend
